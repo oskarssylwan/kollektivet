@@ -10,7 +10,15 @@ app.use(cors())
 app.use(bodyparser.json())
 
 app.post('/', (req, res) => {
-  res.json("Wack")
+  res.json('Wack')
 })
+
+app.get('/', (req, res) => {
+  res.json('Wack')
+})
+
+app.use('/api/gallery', require('./src/routes/galleryHandler'))
+
+
 
 app.listen(port, () => console.log(`The collective API is listening on port ${port}!`))
