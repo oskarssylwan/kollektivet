@@ -1,3 +1,8 @@
-import React from 'react'
+import React from 'react';
+import AuthorativeButton from './components/AuthorativeButton/AuthorativeButton';
 
-export const App = () => <div>Wack</div>
+export const App = () => (
+  <main>
+    <AuthorativeButton></AuthorativeButton>
+  </main>
+);

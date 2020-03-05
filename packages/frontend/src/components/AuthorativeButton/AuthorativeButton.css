@@ -1,0 +1,35 @@
+.authorative-button {
+  background: var(--color-yourBlood);
+  border: 2px solid var(--color-myGold);
+  color: var(--color-myGold);
+  font-size: 3rem;
+  border-radius: 1000px;
+  width: 500px;
+  height: 500px;
+  animation: shadow-pulse 1.75s infinite;
+  cursor: pointer;
+}
+
+.authorative-button:active{
+  background: var(--color-wine);
+  outline: none;
+}
+
+.authorative-button{
+  outline: none;
+}
+
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 0 45px rgba(0, 0, 0, 0);
+    transform: scale(0.9);
+  }
+}

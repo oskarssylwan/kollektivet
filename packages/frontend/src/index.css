@@ -1,0 +1,11 @@
+:root {
+  --color-myGold: hsl(51.1,100%,50%);
+  --color-yourBlood: hsl(0,100%,40.2%);
+  --color-wine: hsl(0,100%,35.3%);
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
