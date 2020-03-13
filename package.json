@@ -4,7 +4,7 @@
   "description": "The Collective is a programming challenge that aims to fuck shit up",
   "main": "index.js",
   "scripts": {
-    "install:all": "npm install && yarn run install:backend && yarn run install:frontend",
+    "install:all": "run-s install:backend install:frontend",
     "install:backend": "npm install --prefix ./packages/backend",
     "install:frontend": "npm install --prefix ./packages/frontend",
     "start": "npm run start:all",

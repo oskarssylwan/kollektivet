@@ -1,0 +1,19 @@
+.authorative-button {
+  background: var(--color-yourBlood);
+  border: 2px solid var(--color-myGold);
+  color: var(--color-myGold);
+  font-size: 2rem;
+  border-radius: 1000px;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.authorative-button:active{
+  background: var(--color-wine);
+  outline: none;
+}
+
+.authorative-button{
+  outline: none;
+}
