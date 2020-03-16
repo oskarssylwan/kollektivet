@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react'
 import {
   AuthorativeButton,
   H1
-} from '../components';
+} from '../components'
 
 const restingAnimation = 'shadow-pulse'
 const enterAnimationClass = 'scale-in-center'
 const exitAnimationClass = 'scale-out-center'
-const exitAnimationDuration = 1000
+const exitAnimationDuration = 700
 const enterAnimationDuration = 500
 
 const randomPrecentage = () => `${Math.random() * 500}%`
@@ -15,19 +15,19 @@ const randomPrecentage = () => `${Math.random() * 500}%`
 const messages = [
   () => <>Welcome friend <br/> Pls click button to start test</>,
   () => <>Ooops, this is first test!</>,
-  () => <img src="https://emojis.slackmojis.com/emojis/images/1484128655/1624/slav_squat.gif?1484128655" />
+  () => <img alt="nah" src="https://emojis.slackmojis.com/emojis/images/1484128655/1624/slav_squat.gif?1484128655" />
 ]
 
 export const FirstTest = ({ nextTest }) => {
-  const [tries, setTries] = useState(0);
-  const [animationClass, setAnimationClass] = useState(restingAnimation);
-  const [buttonPositionX, setButtonPositionX] = useState();
-  const [buttonPositionY, setButtonPositionY] = useState();
-  const timeoutRef = useRef();
+  const [tries, setTries] = useState(0)
+  const [animationClass, setAnimationClass] = useState(restingAnimation)
+  const [buttonPositionX, setButtonPositionX] = useState()
+  const [buttonPositionY, setButtonPositionY] = useState()
+  const timeoutRef = useRef()
 
   const clearTimers = () => {
     timeoutRef.current.forEach(clearTimeout)
-  };
+  }
 
   const incrementTries = () => {
     tries >= (messages.length - 1)

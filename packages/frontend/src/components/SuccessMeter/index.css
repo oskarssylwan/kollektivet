@@ -1,0 +1,14 @@
+.success-inner {
+  height: 0%;
+  width: 100%;
+  opacity: 0.0;
+}
+
+.success-container {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 5;
+  width: 500px;
+  height: 500px;
+}

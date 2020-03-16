@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   FirstTest,
   SecondTest,
-} from './pages';
+  ThirdTest,
+} from './pages'
 
 const tests = [
-  ({ nextTest }) => <FirstTest nextTest={nextTest}/>,
-  ({ nextTest }) => <SecondTest nextTest={nextTest}/>,
+  ({ nextTest, failTest }) => <FirstTest failTest={failTest} nextTest={nextTest}/>,
+  ({ nextTest, failTest }) => <SecondTest failTest={failTest} nextTest={nextTest}/>,
+  ({ nextTest, failTest }) => <ThirdTest failTest={failTest} nextTest={nextTest}/>,
 ]
 
 export const App = () => {
@@ -18,9 +20,15 @@ export const App = () => {
       : setTestNr(testNr + 1)
   }
 
+  const failTest = () => {
+    testNr > 0
+      ? setTestNr(testNr - 1)
+      : console.log('noob')
+  }
+
   return (
     <main>
-      { tests[testNr]({ nextTest }) }
+      { tests[testNr]({ nextTest, failTest }) }
     </main>
   )
 
