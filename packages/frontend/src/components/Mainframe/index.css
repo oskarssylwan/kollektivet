@@ -1,0 +1,84 @@
+:root {
+  --mainframeBackground: #232323;
+  --mainframeHighlight: #A6E22E; 
+  --mainframeText: #F8F8F2;
+}
+#mainframe {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 50rem;
+  height: 25rem;
+  border: 3px solid var(--mainframeBackground);
+  background: var(--mainframeBackground);
+}
+
+#mainframe p, span, input {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+#mainframe header {
+  display: flex;
+  align-items: center;
+  color: var(--mainframeHighlight);
+  flex: 2;
+  font-family: monospace;
+  /* padding: 1px 1px 3px 1px; */
+  padding-bottom: 2px;
+  border-bottom: 3px solid var(--mainframeBackground);
+}
+#mainframe header img {
+  height: 30px;
+  margin-right: 1rem;
+}
+#mainframe header span {
+  color: var(--color-yourBlood)
+}
+
+/*Console*/
+
+#mainframe .console {
+  flex: 26;
+  color: #F8F8F2;
+  padding: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#mainframe .output .output-row {
+  display: flex;
+  flex-direction: column; 
+  padding-bottom: 0.25rem;
+}
+#mainframe .output-row .path {
+  color: var(--mainframeHighlight);
+}
+
+
+
+#mainframe .input-section {
+  display: flex;
+  flex-direction: column;
+}
+#mainframe .input-section p{
+  color: var(--mainframeHighlight)
+}
+
+#mainframe .input-row{
+  display: flex;
+}
+
+#mainframe .input-section input {
+  flex: 1;
+  background: var(--mainframeBackground);
+  border: none;
+  color: #F8F8F2;
+}
+#mainframe .input-section input:focus {
+  outline: none;
+}
+
+#mainframe .command-arrow {
+  color: var(--mainframeHighlight);
+  padding-right: 1rem;
+}

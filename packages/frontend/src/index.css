@@ -142,3 +142,13 @@ main {
     opacity: 1;
   }
 }
+
+.mainframe-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#test-3 {
+  background: black;
+}
