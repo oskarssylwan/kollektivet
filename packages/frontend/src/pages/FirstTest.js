@@ -1,62 +1,54 @@
 import React, { useRef, useState } from 'react';
 import { AuthorativeButton, H1 } from '../components';
 
-const restingAnimation = 'shadow-pulse';
-const enterAnimationClass = 'scale-in-center';
-const exitAnimationClass = 'scale-out-center';
-const exitAnimationDuration = 700;
-const enterAnimationDuration = 500;
+const restingAnimation = 'shadow-pulse'
+const enterAnimationClass = 'scale-in-center'
+const exitAnimationClass = 'scale-out-center'
+const exitAnimationDuration = 700
+const enterAnimationDuration = 500
+const slavSquatGif = 'https://emojis.slackmojis.com/emojis/images/1484128655/1624/slav_squat.gif?1484128655'
 
-const randomPrecentage = () => `${Math.random() * 500}%`;
+const randomPercentage = () => `${Math.random() * 100}%`
 
 const messages = [
-  () => (
-    <>
-      Welcome friend <br /> Pls click button to start test
-    </>
-  ),
+  () => <>Welcome friend <br /> Pls click button to start test</>,
   () => <>Ooops, this is first test!</>,
-  () => (
-    <img
-      alt='nah'
-      src='https://emojis.slackmojis.com/emojis/images/1484128655/1624/slav_squat.gif?1484128655'
-    />
-  )
-];
+  () => <img alt='nah' src={slavSquatGif}/>,
+]
 
 export const FirstTest = ({ nextTest }) => {
-  const [tries, setTries] = useState(0);
-  const [animationClass, setAnimationClass] = useState(restingAnimation);
-  const [buttonPositionX, setButtonPositionX] = useState();
-  const [buttonPositionY, setButtonPositionY] = useState();
-  const timeoutRef = useRef();
+  const [tries, setTries] = useState(0)
+  const [animationClass, setAnimationClass] = useState(restingAnimation)
+  const [buttonPositionX, setButtonPositionX] = useState()
+  const [buttonPositionY, setButtonPositionY] = useState()
+  const timeoutRef = useRef()
 
   const clearTimers = () => {
-    timeoutRef.current.forEach(clearTimeout);
+    timeoutRef.current.forEach(clearTimeout)
   };
 
   const incrementTries = () => {
     tries >= messages.length - 1
       ? setTries(messages.length - 1)
-      : setTries(tries + 1);
+      : setTries(tries + 1)
   };
 
   const moveButton = () => {
-    setAnimationClass(exitAnimationClass);
-    incrementTries();
+    setAnimationClass(exitAnimationClass)
+    incrementTries()
 
     const enterTimeoutRef = setTimeout(() => {
-      setButtonPositionX(randomPrecentage());
-      setButtonPositionY(randomPrecentage());
-      setAnimationClass(enterAnimationClass);
-    }, exitAnimationDuration);
+      setButtonPositionX(randomPercentage())
+      setButtonPositionY(randomPercentage())
+      setAnimationClass(enterAnimationClass)
+    }, exitAnimationDuration)
 
     const restingTimeoutRef = setTimeout(() => {
-      setAnimationClass(restingAnimation);
-      clearTimers();
-    }, exitAnimationDuration + enterAnimationDuration);
+      setAnimationClass(restingAnimation)
+      clearTimers()
+    }, exitAnimationDuration + enterAnimationDuration)
 
-    timeoutRef.current = [enterTimeoutRef, restingTimeoutRef];
+    timeoutRef.current = [enterTimeoutRef, restingTimeoutRef]
   };
 
   return (
@@ -65,18 +57,11 @@ export const FirstTest = ({ nextTest }) => {
         <H1 className='stack-m text-alig-center'>{messages[tries]()}</H1>
       </div>
 
-      <div className='flex-fill vw-100 d-flex justify-center align-center scroll'>
+      <div className='position-relative flex-fill vw-100 d-flex justify-center align-center'>
         <div
-          className='inset-l stack-xl'
+          className={`${tries < 1 ? '' : 'position-absolute' } inset-l stack-xl`}
           onMouseEnter={moveButton}
-          style={
-            tries < 1
-              ? {}
-              : {
-                  transform: `translate(${buttonPositionX}, ${buttonPositionY})`,
-                  WebkitTransform: `translate(${buttonPositionX}, ${buttonPositionY})`
-                }
-          }
+          style={{ top: buttonPositionY, left: buttonPositionX }}
         >
           <AuthorativeButton className={animationClass} onClick={nextTest}>
             за Родину

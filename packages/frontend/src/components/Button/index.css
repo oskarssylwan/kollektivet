@@ -1,0 +1,8 @@
+.button {
+  padding: 16px 32px;
+  cursor: pointer;
+  background: var(--color-yourBlood);
+  border: 2px solid var(--color-myGold);
+  color: var(--color-myGold);
+  font-size: 16px;
+}

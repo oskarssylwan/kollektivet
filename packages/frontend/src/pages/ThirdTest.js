@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mainframe } from '../components';
-
 import '../index.css';
+
 export const ThirdTest = ({ nextTest }) => {
   return (
     <section

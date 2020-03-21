@@ -3,7 +3,8 @@ import {
   FirstTest,
   SecondTest,
   ThirdTest,
-  FourthTest
+  FourthTest,
+  FifthTest,
 } from './pages'
 
 const tests = [
@@ -11,6 +12,7 @@ const tests = [
   ({ nextTest, failTest }) => <SecondTest failTest={failTest} nextTest={nextTest} />,
   ({ nextTest, failTest }) => <ThirdTest failTest={failTest} nextTest={nextTest} />,
   ({ nextTest, failTest }) => <FourthTest failTest={failTest} nextTest={nextTest} />,
+  ({ nextTest, failTest }) => <FifthTest failTest={failTest} nextTest={nextTest} />,
 ]
 
 export const App = () => {
@@ -24,8 +26,8 @@ export const App = () => {
 
   const failTest = () => {
     testNr > 0
-      ? setTestNr(testNr - 1)
-      : console.log('noob')
+      ? setTestNr(0)
+      : alert(`jesus fuck dude, it's only the first test`)
   }
 
   return (
