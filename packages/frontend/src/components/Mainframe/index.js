@@ -8,15 +8,15 @@ export const Mainframe = ({ nextTest, failTest }) => {
   const consoleEndRef = React.createRef();
 
   const testCommands = [
-    { command: 'cd backend', location: 'C:/code' },
+    { command: 'cd backend', location: 'G:/code' },
     {
       command: 'npm start',
-      path: 'C:/code/backend',
+      path: 'G:/code/backend',
       output: 'Started Backend..'
     }
   ];
   const [commands, setCommands] = useState([]);
-  const [currentPath, setCurrentPath] = useState('C:/');
+  const [currentPath, setCurrentPath] = useState('G:/root');
   const [inputValue, setInputValue] = useState('');
   const [apiUrl, setApiUrl] = useState('http://localhost:3001/api/mainframe');
 
@@ -34,13 +34,20 @@ export const Mainframe = ({ nextTest, failTest }) => {
           //  Append Command
           const arr = commands;
           arr.push(res);
-          if (res.status) {
+          if (res.status == 1) {
             arr.push({ path: 'G:/root', command: '*･ﾟﾟ･*:.｡..｡.:*ﾟ:*:✼✿　CCCP Shuting down　✿✼:*ﾟ:.｡..｡.:*･ﾟﾟ･*', output: 'this is all i ever wanted' });
             setTimeout(() => {
               nextTest();
             }, 4000);
           }
+
+          if (res.status == -1) {
+            setTimeout(() => {
+              failTest();
+            }, 40000);
+          }
           clearInput();
+          setCurrentPath(res.newPath);
         });
       }
     }

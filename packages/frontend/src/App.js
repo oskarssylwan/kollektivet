@@ -26,7 +26,7 @@ export const App = () => {
 
   const failTest = () => {
     testNr > 0
-      ? setTestNr(0)
+      ? setTestNr(testNr - 1)
       : alert(`jesus fuck dude, it's only the first test`)
   }
 

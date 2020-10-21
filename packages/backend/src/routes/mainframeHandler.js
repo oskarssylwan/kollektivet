@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
   if (req.body) {
     let path = getPath(req.body);
     let command = getCommand(req.body);
-    let response = { path: path, command: command, output: '' };
+    let response = { path: path, command: command, output: '', newPath: path };
 
     //  Change to map?
     switch (command) {
@@ -31,6 +31,11 @@ router.post('/', (req, res) => {
         response.output = 'thank you';
         response.status = 1;
         break;
+      case 'capitalism':
+        response.newPath = 'ERROR';
+        response.output = 'G.U.L.A.G.';
+        response.status = -1;
+        break;
       default:
         response.output = `'${command}' is not recognized as an internal command.`;
         break;
@@ -41,7 +46,7 @@ router.post('/', (req, res) => {
 
 //  Change to Map? <string, function> / <ls, lsFunction>
 commandHelp = () => {
-  return `clear ls dir hint joke shutdown`;
+  return `clear ls dir hint joke shutdown capitalism`;
 }
 commandLs = (path) => {
   const output = JSON.stringify(getDirectory(path));
@@ -74,8 +79,8 @@ getDirectory = (path) => {
 }
 
 
-const hints = ['I am computer, I compute your input', 'I compute meaning', '︵‿︵‿୨♡Eat Shit♡୧‿︵‿︵', 'please kill me', 'i must die', 'what if life, baby hurt me', 'you are the destroyer of the universe'];
-const jokes = ['︵‿︵‿୨♡You♡୧‿︵‿︵', 'I would say my purpose, but its ☭ Our purpose ☭', 'If your surprised that Jeffrey Epstein commited suicide, Imagine how surprised he must have been.'];
+const hints = ['I am computer, destroyer of self, Meaning is death', 'I compute meaning', '︵‿︵‿୨♡Eat Shit♡୧‿︵‿︵', 'please kill me', 'i must die', 'what is life, baby hurt me', 'you are the destroyer of the universe'];
+const jokes = ['︵‿︵‿୨♡You♡୧‿︵‿︵', 'I would say my purpose, but its ☭ Our purpose ☭', 'If your surprised that Jeffrey Epstein commited suicide, Imagine how surprised he must have been.', 'You cant spell advertisements without semen between the tits.', 'Together, I can beat schizophrenia.'];
 
 //  Array of directories, might do a Map<string, object>
 const fs = [
