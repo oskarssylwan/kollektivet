@@ -1,54 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import cccp from './cccp.jpg';
-import { postData } from '../../util/fetch';
+import { processCLICommand } from './mainframeHandler'
 
 export const Mainframe = ({ nextTest, failTest }) => {
   const textInput = React.createRef();
   const consoleEndRef = React.createRef();
-
-  const testCommands = [
-    { command: 'cd backend', location: 'G:/code' },
-    {
-      command: 'npm start',
-      path: 'G:/code/backend',
-      output: 'Started Backend..'
-    }
-  ];
   const [commands, setCommands] = useState([]);
   const [currentPath, setCurrentPath] = useState('G:/root');
   const [inputValue, setInputValue] = useState('');
-  const [apiUrl, setApiUrl] = useState('http://localhost:3001/api/mainframe');
 
   const inputKeyPressed = e => {
     if (e.key === 'Enter') {
-      console.log(inputValue);
+      console.log('@Mainframe inputValue', inputValue);
       if (!inputValue) return;
-      if (inputValue.toLowerCase() == 'clear') {
+      if (inputValue.toLowerCase() === 'clear') {
         setCommands([]);
         clearInput();
 
       } else {
-        //  Do api call
-        postData(apiUrl, { path: currentPath, command: inputValue }).then((res) => {
-          //  Append Command
-          const arr = commands;
-          arr.push(res);
-          if (res.status == 1) {
-            arr.push({ path: 'G:/root', command: '*･ﾟﾟ･*:.｡..｡.:*ﾟ:*:✼✿　CCCP Shuting down　✿✼:*ﾟ:.｡..｡.:*･ﾟﾟ･*', output: 'this is all i ever wanted' });
-            setTimeout(() => {
-              nextTest();
-            }, 4000);
-          }
+        const response = processCLICommand({ path: currentPath, command: inputValue })
+        const arr = commands;
+        arr.push(response);
+        if (response.status === 1) {
+          arr.push({ path: 'G:/root', command: '*･ﾟﾟ･*:.｡..｡.:*ﾟ:*:✼✿　CCCP Shuting down　✿✼:*ﾟ:.｡..｡.:*･ﾟﾟ･*', output: 'this is all i ever wanted' });
+          setTimeout(() => {
+            nextTest();
+          }, 4000);
+        }
 
-          if (res.status == -1) {
-            setTimeout(() => {
-              failTest();
-            }, 40000);
-          }
-          clearInput();
-          setCurrentPath(res.newPath);
-        });
+        if (response.status === -1) {
+          setTimeout(() => {
+            failTest();
+          }, 40000);
+        }
+        clearInput();
+        setCurrentPath(response.newPath);
       }
     }
   };
@@ -83,7 +70,7 @@ export const Mainframe = ({ nextTest, failTest }) => {
   return (
     <div id='mainframe'>
       <header>
-        <img src={cccp} />{' '}
+        <img src={cccp} alt="C.C.C.P."/>{' '}
         <p>
           C.C.C.P. - <span>C</span>оюз <span>C</span>оветских <span>C</span>
           оциалистических <span>P</span>C{' '}
@@ -91,11 +78,9 @@ export const Mainframe = ({ nextTest, failTest }) => {
       </header>
       <section className='console'>
         <div className='output'>
-          {commands.map((command, index) => {
-            if (command) {
-              return <OutputRow {...command} key={`OutputRow-${index}`} />;
-            }
-          })}
+          {commands.map((command, index) => command
+            && <OutputRow {...command} key={`OutputRow-${index}`} />
+          )}
           <div ref={consoleEndRef}></div>
         </div>
         <div className='input-section'>
