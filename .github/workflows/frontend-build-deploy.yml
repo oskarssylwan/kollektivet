@@ -1,0 +1,42 @@
+name: Build and deploy frontend package to kollektivet.oskarsylwan.com
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/frontend/**
+
+jobs:
+  build:
+    name: Build React App
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install deps and build project
+        run: |
+          npm run install:frontend
+          npm run build:frontend
+      - name: Upload build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: react-build
+          path: ./packages/frontend/build
+  s3:
+    name: Push to Amazon S3
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY }}
+      AWS_DEFAULT_REGION: eu-north-1
+    steps:
+      - name: Download build files
+        uses: actions/download-artifact@v2
+        with:
+          name: react-build
+          path: ./build/
+      - name: 'Sync build files with S3'
+        run: aws s3 sync ./build/ s3://kollektivet.oskarssylwan.com
