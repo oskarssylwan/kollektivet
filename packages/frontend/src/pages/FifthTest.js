@@ -3,8 +3,5 @@ import {
   H1,
 } from '../components'
 
-export const FifthTest = ({ nextTest }) => {
-  return (
-    <H1>FifthTest</H1>
-  );
-};
+export const FifthTest = ({ nextTest }) =>
+  <H1>FifthTest</H1>
