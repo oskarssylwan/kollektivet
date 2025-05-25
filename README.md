@@ -1,3 +1,6 @@
+**Obs!** This project has been archieved.
+See [Woodhill](https://github.com/woodhill-studios/kollektivet/tree/master) instead
+
 # Welcome to The Collective
 
 ## Getting started
